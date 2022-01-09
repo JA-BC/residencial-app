@@ -6,10 +6,10 @@ import { Column } from 'primereact/column';
 import { Axios } from '../../core/services';
 import { handlerError } from '../../core/helpers';
 import { Estado } from '../../shared/templates';
-import Filtro from './ResidenteFiltro';
-import Form from './ResidenteForm';
+import Filtro from './ResidenciaFiltro';
+import Form from './ResidenciaForm';
 
-export default function ResidentePage() {
+export default function ResidenciaPage() {
   const [data, setData] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [model, setModel] = useState({});
@@ -47,7 +47,7 @@ export default function ResidentePage() {
     if (isAccepted) {
       setIsLoading(true);
 
-      const res = await Axios.post('residente/remove', {
+      const res = await Axios.post('residencia/remove', {
         id: model.id
       }).catch(handlerError)
       .finally(() => setIsLoading(false));
@@ -71,7 +71,7 @@ export default function ResidentePage() {
       limit: pagination.limit
     };
 
-    const res = await Axios.get('/residente/find', { params })
+    const res = await Axios.get('/residencia/find', { params })
       .catch(handlerError)
       .finally(() => setIsLoading(false));
 
@@ -103,36 +103,20 @@ export default function ResidentePage() {
     </div>
   );
 
-  const getGenero = (genero) => {
-    const color = genero === 'M' ? 'badge-light-primary' : 'badge-light-danger';
-    return <span className={'badge ' + color}>{genero}</span>;
-  }
-
-  const getPhoneFormat = (value) => {
-    const s2 = ('' + value).replace(/\D/g, '');
-    const m = s2.match(/^(\d{3})(\d{3})(\d{4})$/);
-
-    return !m ? 'Sin asignar' : '(' + m[1] + ') ' + m[2] + '-' + m[3];
-  }
-
   return (
     <>
-      <PageWrapper name="Residentes" filterTpl={Filtro} onAdd={() => setShowForm(true)}>
+      <PageWrapper name="Residencias" filterTpl={Filtro} onAdd={() => setShowForm(true)}>
         <DataTable value={data} responsiveLayout="stack" className="min-h-500px"
           loading={isLoading} loadingIcon="spinner-border text-white border-3 w-45px h-45px"
           emptyMessage={<h6 className="text-center text-muted">No existen registros</h6>}>
 
-          <Column header="DNI" field="dni" />
-
-          <Column header="Nombre" body={({ nombre, apellido }) => nombre + ' ' + apellido} />
+          <Column header="Numero" field="numero" />
 
           <Column header="Tipo" body={'Sin asignar'} />
 
-          <Column header="Telefono" body={({ telefono }) => getPhoneFormat(telefono)} />
+          <Column header="Propietario" body={'Sin asignar'} />
 
-          <Column header="Genero" body={({ genero }) => getGenero(genero)} />
-
-          <Column header="Estado" body={({ activo }) => <Estado isActive={activo} />} />
+          <Column header="Poblada" body={(poblada) => poblada ? 'Si' : 'No'} />
 
           <Column header="" headerClassName="w-10px"
             body={(item) => actionButtons(item)} bodyClassName="p-0 text-end" />

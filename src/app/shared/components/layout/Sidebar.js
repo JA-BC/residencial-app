@@ -12,19 +12,19 @@ export default function Sidebar() {
 
             <li className="nav-item my-3">
                 <NavLink to="/app/home" className="nav-link py-3 rounded-2 bg-active-primary bg-active-opacity-10 text-active-primary">
-                    <i className="bi bi-house-door fs-1"></i>
+                    <i className="bi bi-bar-chart-line fs-1"></i>
                 </NavLink>
             </li>
 
             <li className="nav-item my-3">
                 <NavLink to="/app/residente" className="nav-link py-3 rounded-2 bg-active-primary bg-active-opacity-10 text-active-primary">
-                    <i className="bi bi-activity fs-1"></i>
+                    <i className="bi bi-people fs-1"></i>
                 </NavLink>
             </li>
 
             <li className="nav-item my-3">
-                <NavLink to="/not-found" className="nav-link py-3 rounded-2 bg-active-primary bg-active-opacity-10 text-active-primary">
-                    <i className="bi bi-pie-chart fs-1"></i>
+                <NavLink to="/app/residencia" className="nav-link py-3 rounded-2 bg-active-primary bg-active-opacity-10 text-active-primary">
+                    <i className="bi bi-house-door fs-1"></i>
                 </NavLink>
             </li>
 

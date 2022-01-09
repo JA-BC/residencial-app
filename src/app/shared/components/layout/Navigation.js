@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import userPhoto from '../../../../assets/img/user/user.jpg';
 
@@ -42,7 +43,8 @@ export default function Navigation() {
                 <span className="bullet bullet-vertical bg-success h-35px"></span>
               </div>
 
-              <Dropdown.Item className="fs-6 py-3 border-bottom border-secondary">
+              <Dropdown.Item className="fs-6 py-3 border-bottom border-secondary"
+                as={Link} to="/app/perfil">
                 Mi perfil
               </Dropdown.Item>
 
